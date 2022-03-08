@@ -1,0 +1,27 @@
+[submodule "arch/x64/mingw"]
+	path = arch/x64/mingw
+	url = https://github.com/Saoskywalker/mingw_port.git
+
+[submodule "arch/arm32/mach_f1c100s"]
+	path = arch/arm32/mach_f1c100s
+	url = https://github.com/Saoskywalker/mach_f1c100s.git
+
+[submodule "arch/arm32"]
+	path = arch/arm32
+	url = https://github.com/Saoskywalker/arm32.git
+
+[submodule "hal"]
+	path = hal
+	url = https://github.com/Saoskywalker/MyHal.git
+
+[submodule "lib"]
+	path = lib
+	url = https://github.com/Saoskywalker/MyLibrary.git
+
+[submodule "SagittariusUI"]
+	path = SagittariusUI
+	url = https://github.com/Saoskywalker/Sagittarius.git
+
+[submodule "std_lib"]
+	path = std_lib
+	url = https://github.com/Saoskywalker/std_lib_c.git
