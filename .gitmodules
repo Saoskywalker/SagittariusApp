@@ -9,6 +9,7 @@
 [submodule "arch/arm32/public"]
 	path = arch/arm32/public
 	url = https://github.com/Saoskywalker/platform_public.git
+	branch = arm32
 
 [submodule "hal"]
 	path = hal
