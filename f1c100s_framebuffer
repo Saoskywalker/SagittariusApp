@@ -1,0 +1,19 @@
+#!/bin/bash
+clear
+cd /media/sf_Aysi/study/Lichee\ Nano/minimal_f1c100s_framebuffer/
+echo "-------------------------------------
+-------------------START-------------------
+-------------------------------------------"
+time3=$(date "+%Y-%m-%d %H:%M:%S")
+echo $time3
+echo "go to f1c100s dir"
+echo "building"
+echo "-------------------------------------
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------------------"
+make CROSS_COMPILE=/usr/gcc-linaro/bin/arm-eabi- PLATFORM=arm32-f1c100s
+echo "***************************"
+time3=$(date "+%Y-%m-%d %H:%M:%S")
+echo $time3
+echo "************END************"
+exit

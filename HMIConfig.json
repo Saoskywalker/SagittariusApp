@@ -1,0 +1,310 @@
+{
+    "version": "MTF_HMI",
+    "run": "code-group@1",
+    "display-number@15": {
+        "run": "code-group@2",
+        "key": [
+            {
+                "name": "sound",
+                "x1": 56,
+                "y1": 184,
+                "x2": 261,
+                "y2": 246,
+                "jump": null,
+                "key-effect": null,
+                "key-code": 5,
+                "address": 4224,
+                "type": "click",
+                "run-down": "code-group@3",
+                "auto-send": true,
+                "storage-bool": false
+            },
+            {
+                "name": "rf",
+                "x1": 55,
+                "y1": 262,
+                "x2": 260,
+                "y2": 327,
+                "jump": null,
+                "key-effect": null,
+                "key-code": 6,
+                "address": 4224,
+                "type": "click",
+                "run-down": "code-group@4",
+                "auto-send": true,
+                "storage-bool": true
+            },
+            {
+                "name": "down",
+                "x1": 535,
+                "y1": 222,
+                "x2": 579,
+                "y2": 264,
+                "jump": null,
+                "key-effect": null,
+                "key-code": 13,
+                "address": 4224,
+                "type": "click",
+                "run-up": "code-group@6",
+                "run-down": "code-group@5",
+                "auto-send": true,
+                "storage-bool": false
+            },
+            {
+                "name": "up",
+                "x1": 679,
+                "y1": 223,
+                "x2": 723,
+                "y2": 265,
+                "jump": null,
+                "key-effect": null,
+                "key-code": 14,
+                "address": 4224,
+                "type": "click",
+                "run-up": "code-group@8",
+                "run-down": "code-group@7",
+                "auto-send": true,
+                "storage-bool": true
+            },
+            {
+                "name": "start",
+                "x1": 683,
+                "y1": 521,
+                "x2": 750,
+                "y2": 583,
+                "jump": null,
+                "key-effect": null,
+                "key-code": 22,
+                "address": 4224,
+                "type": "click",
+                "auto-send": true,
+                "storage-bool": true
+            },
+            {
+                "name": "ere",
+                "x1": 300,
+                "y1": 521,
+                "x2": 500,
+                "y2": 583,
+                "jump": null,
+                "key-effect": null,
+                "key-code": 123,
+                "address": 2323,
+                "type": "lock",
+                "auto-send": false,
+                "storage-bool": false
+            }
+        ],
+        "text": [
+            {
+                "name": "time",
+                "x1": 599,
+                "y1": 231,
+                "font": 37,
+                "size": 24,
+                "color": "fa 00 05",
+                "lenght": 6,
+                "address": 6912,
+                "storage-string": ""
+            },
+            {
+                "name": "int",
+                "x1": 599,
+                "y1": 322,
+                "font": 37,
+                "size": 24,
+                "color": "0C 10 90",
+                "lenght": 6,
+                "address": 6920,
+                "storage-string": "FDSFE"
+            },
+            {
+                "name": "mode",
+                "x1": 599,
+                "y1": 412,
+                "font": 37,
+                "size": 24,
+                "color": "06 c8 10",
+                "lenght": 6,
+                "address": 6916,
+                "storage-string": "FDSFE"
+            }
+        ],
+        "picture": [
+            {
+                "name": "start",
+                "x1": 683,
+                "y1": 521,
+                "address": 4097,
+                "photo": 16
+            }
+        ]
+    },
+    "display-number@16": {
+        "run": "code-group@2",
+        "key": [
+            {
+                "name": "sound",
+                "x1": 56,
+                "y1": 184,
+                "x2": 261,
+                "y2": 246,
+                "jump": null,
+                "key-effect": null,
+                "key-code": 5,
+                "address": 4224,
+                "type": "click",
+                "run-down": "code-group@3",
+                "auto-send": true,
+                "storage-bool": false
+            },
+            {
+                "name": "rf",
+                "x1": 55,
+                "y1": 262,
+                "x2": 260,
+                "y2": 327,
+                "jump": null,
+                "key-effect": null,
+                "key-code": 6,
+                "address": 4224,
+                "type": "click",
+                "run-down": "code-group@4",
+                "auto-send": true,
+                "storage-bool": true
+            },
+            {
+                "name": "down",
+                "x1": 535,
+                "y1": 222,
+                "x2": 579,
+                "y2": 264,
+                "jump": null,
+                "key-effect": null,
+                "key-code": 13,
+                "address": 4224,
+                "type": "click",
+                "run-up": "code-group@6",
+                "run-down": "code-group@5",
+                "auto-send": true,
+                "storage-bool": false
+            },
+            {
+                "name": "up",
+                "x1": 679,
+                "y1": 223,
+                "x2": 723,
+                "y2": 265,
+                "jump": null,
+                "key-effect": null,
+                "key-code": 14,
+                "address": 4224,
+                "type": "click",
+                "run-up": "code-group@8",
+                "run-down": "code-group@7",
+                "auto-send": true,
+                "storage-bool": true
+            },
+            {
+                "name": "start",
+                "x1": 683,
+                "y1": 521,
+                "x2": 750,
+                "y2": 583,
+                "jump": null,
+                "key-effect": null,
+                "key-code": 22,
+                "address": 4224,
+                "type": "click",
+                "auto-send": true,
+                "storage-bool": true
+            },
+            {
+                "name": "ere",
+                "x1": 300,
+                "y1": 521,
+                "x2": 500,
+                "y2": 583,
+                "jump": null,
+                "key-effect": null,
+                "key-code": 123,
+                "address": 2323,
+                "type": "lock",
+                "auto-send": false,
+                "storage-bool": false
+            }
+        ],
+        "text": [
+            {
+                "name": "time",
+                "x1": 599,
+                "y1": 231,
+                "font": 37,
+                "size": 24,
+                "color": "fa 00 05",
+                "lenght": 6,
+                "address": 6912,
+                "storage-string": ""
+            },
+            {
+                "name": "int",
+                "x1": 599,
+                "y1": 322,
+                "font": 37,
+                "size": 24,
+                "color": "0C 10 90",
+                "lenght": 6,
+                "address": 6920,
+                "storage-string": "FDSFE"
+            },
+            {
+                "name": "mode",
+                "x1": 599,
+                "y1": 412,
+                "font": 37,
+                "size": 24,
+                "color": "06 c8 10",
+                "lenght": 6,
+                "address": 6916,
+                "storage-string": "FDSFE"
+            }
+        ],
+        "picture": [
+            {
+                "name": "start",
+                "x1": 683,
+                "y1": 521,
+                "address": 4097,
+                "photo": 16,
+                "type": "normal"
+            }
+        ]
+    },
+    "code-group@1": [
+        "82 0084 00 00000F"
+    ],
+    "code-group@2": [
+        "82 1b00 3639",
+        "82 1b08 3639",
+        "82 1b04 3639",
+        "82 1001 0000"
+    ],
+    "code-group@3": [
+        "71 0F 0038 00B8 0105 00F6 0038 00B8"
+    ],
+    "code-group@4": [
+        "71 10 0038 0106 0105 0147 0038 0106"
+    ],
+    "code-group@5": [
+        "71 16 0217 00DE 0243 0108 0217 00DE"
+    ],
+    "code-group@6": [
+        "71 0F 0217 00DE 0243 0108 0217 00DE"
+    ],
+    "code-group@7": [
+        "71 16 02A7 00DF 02D3 0109 02A7 00DF"
+    ],
+    "code-group@8": [
+        "71 0F 02A7 00DF 02D3 0109 02A7 00DF"
+    ]
+}

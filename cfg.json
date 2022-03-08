@@ -1,0 +1,22 @@
+{
+    "INIT": {
+        "sys": "none",
+        "gui": "dalta_HMI",
+        "agreement": "T5l",
+        "flash_format": false,
+        "back_light_control": false,
+        "back_light_set": "64 32 0A",
+        "display_direction": 0,
+        "touch_switch": false,
+        "text_backup": true,
+        "touch_mode": true,
+        "width": 800,
+        "height": 600,
+        "com_band": 115200,
+        "beep_output": false,
+        "beep_control": false,
+        "touch_down_keep_up": false,
+        "check_sum": false,
+        "file_source": "SD"
+    }
+}
