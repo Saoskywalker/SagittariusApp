@@ -11,6 +11,11 @@
 	url = https://github.com/Saoskywalker/platform_public.git
 	branch = arm32
 
+[submodule "arch/x64/public"]
+	path = arch/x64/public
+	url = https://github.com/Saoskywalker/platform_public.git
+	branch = x64
+
 [submodule "hal"]
 	path = hal
 	url = https://github.com/Saoskywalker/MyHal.git
