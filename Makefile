@@ -13,16 +13,14 @@ endif
 include arch/$(ARCH)/$(MACH)/mkenv.mk
 
 #extren library makefile
-# include lib/FreeRTOS-Kernel/FreeRTOS.mk
+include lib/FreeRTOS-Kernel/FreeRTOS.mk
 
 #define
-DEFINES	+= -D_USER_DEBUG 
+DEFINES	+= #-D_USER_DEBUG 
 
 #include path
 INCDIRS	+= \
 	-Iarch/$(ARCH)/$(MACH)/port/include \
-	-Ilib/music_library \
-	-Ilib/debug_library \
 
 #library path
 LIBDIRS	+=
@@ -37,20 +35,82 @@ SRC_C += $(wildcard $(foreach n, $(SRCDIRS_C), $(n)/*.c))
 #c source files
 # port src
 SRC_C += \
-	arch/$(ARCH)/$(MACH)/port/audio_port.c \
 	arch/$(ARCH)/$(MACH)/port/MTF_io.c \
+	arch/$(ARCH)/$(MACH)/port/file_operate_hal.c \
+	arch/$(ARCH)/$(MACH)/port/delay.c \
+	arch/$(ARCH)/$(MACH)/port/framebuffer_port.c \
+	arch/$(ARCH)/$(MACH)/port/audio_port.c \
+	arch/$(ARCH)/$(MACH)/port/touch_port.c \
+	arch/$(ARCH)/$(MACH)/port/PWM_port.c \
+	arch/$(ARCH)/$(MACH)/port/GPIO_port.c \
+	arch/$(ARCH)/$(MACH)/port/ROM_port.c \
+	arch/$(ARCH)/$(MACH)/port/uart_port.c \
+	arch/$(ARCH)/$(MACH)/port/timer_port.c \
+	arch/$(ARCH)/$(MACH)/port/system_port.c \
+
+#hal src
+SRC_C += \
+	hal/beep.c \
+
+#usr src
+SRC_C += \
+	# demo_mingw.c \
+
+#include path
+INCDIRS	+= \
+	-ISagittariusUI/include \
+	-Ihal/include \
+	-Ilib \
+	-Ilib/UI \
+	-Ilib/PICTURE \
+	-Ilib/TOUCH \
+	-Ilib/TEXT \
+	-Ilib/crypto \
+	-Ilib/FreeModbus_Slave_Master_v16/port \
+	-Ilib/FreeModbus_Slave_Master_v16/modbus/rtu \
+	-Ilib/ComPort \
+	-Ilib/music_library \
+	-Ilib/debug_library \
 
 # usr library src
 SRC_C += \
+	lib/PICTURE/bmp.c \
+	lib/PICTURE/gif.c \
+	lib/PICTURE/lodepng.c \
+	lib/PICTURE/piclib.c \
+	lib/TOUCH/touch.c \
+	lib/TOUCH/ts_calibrate_common.c \
+	lib/TEXT/text.c \
+	lib/TEXT/text_rect.c \
+	lib/TEXT/font.c \
+	lib/UI/UI_engine.c \
+	lib/UI/lcd.c \
+	lib/crypto/crc32.c \
+	lib/crypto/sha256.c \
+	lib/ComPort/dgus2Com.c \
+	lib/ComPort/ComPort.c \
+	lib/ComPort/MTF_ComProtocol.c \
+	lib/ComPort/T5UIC2_agreement.c \
+	lib/FreeModbus_Slave_Master_v16/modbus/rtu/mbcrc.c \
 	lib/music_library/music_play.c \
 	lib/debug_library/my_assert.c \
 
 #hal src
 SRC_C += \
+	# hal/beep.c \
+	# hal/dma_pool.c \
 
 #usr src
 SRC_C += \
-	demo_mingw.c \
+	SagittariusUI/main.c \
+	SagittariusUI/Sagittarius_global.c \
+	SagittariusUI/Sagittarius_timer.c \
+	SagittariusUI/cJSON.c \
+	SagittariusUI/cJSON_extend.c \
+	SagittariusUI/licence.c \
+	SagittariusUI/TestBoard.c \
+	SagittariusUI/MTF_HMI.c \
+	SagittariusUI/file_type.c \
 
 #c++ source path
 SRCDIRS_CXX += 
