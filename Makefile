@@ -60,7 +60,7 @@ SRC_C += \
 INCDIRS	+= \
 	-ISagittariusUI/include \
 	-Ihal/include \
-	-Ilib \
+	-Ilib/libx/include \
 	-Ilib/UI \
 	-Ilib/PICTURE \
 	-Ilib/TOUCH \
@@ -71,9 +71,11 @@ INCDIRS	+= \
 	-Ilib/ComPort \
 	-Ilib/music_library \
 	-Ilib/debug_library \
+	-Ilib/DW_Lib \
 
 # usr library src
 SRC_C += \
+	lib/libx/fifo.c \
 	lib/PICTURE/bmp.c \
 	lib/PICTURE/gif.c \
 	lib/PICTURE/lodepng.c \
@@ -94,6 +96,9 @@ SRC_C += \
 	lib/FreeModbus_Slave_Master_v16/modbus/rtu/mbcrc.c \
 	lib/music_library/music_play.c \
 	lib/debug_library/my_assert.c \
+	lib/DW_Lib/DW_FileDecodeLib.c \
+	lib/DW_Lib/dwDriver.c \
+	lib/DW_Lib/dwDriveD2.c \
 
 #hal src
 SRC_C += \
