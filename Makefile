@@ -78,6 +78,7 @@ SRC_C += \
 	lib/libx/fifo.c \
 	lib/PICTURE/bmp.c \
 	lib/PICTURE/gif.c \
+	lib/PICTURE/tjpgd.c \
 	lib/PICTURE/lodepng.c \
 	lib/PICTURE/piclib.c \
 	lib/TOUCH/touch.c \
