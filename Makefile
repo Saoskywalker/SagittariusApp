@@ -1,6 +1,7 @@
 #
 # Get platform information about ARCH and MACH from PLATFORM variable.
 #
+BOARD ?= pc
 ifeq ($(words $(subst -, , $(PLATFORM))), 2)
 ARCH			:= $(word 1, $(subst -, , $(PLATFORM)))
 MACH			:= mach_$(word 2, $(subst -, , $(PLATFORM)))
@@ -21,6 +22,7 @@ DEFINES	+= #-D_USER_DEBUG
 #include path
 INCDIRS	+= \
 	-Iarch/$(ARCH)/$(MACH)/port/include \
+	-Iboard/$(BOARD)/include \
 
 #library path
 LIBDIRS	+=
