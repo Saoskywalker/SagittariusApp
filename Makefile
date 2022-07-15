@@ -1,20 +1,10 @@
-#
-# Get platform information about ARCH and MACH from PLATFORM variable.
-#
 BOARD ?= pc
-ifeq ($(words $(subst -, , $(PLATFORM))), 2)
-ARCH			:= $(word 1, $(subst -, , $(PLATFORM)))
-MACH			:= mach_$(word 2, $(subst -, , $(PLATFORM)))
-else
-ARCH			?= x64
-MACH			?= mingw
-endif
 
-#compile environment makefile
-include arch/$(ARCH)/$(MACH)/mkenv.mk
+#compile target board makefile
+include board/$(BOARD)/board.mk
 
 #extren library makefile
-include lib/FreeRTOS-Kernel/FreeRTOS.mk
+# include lib/FreeRTOS-Kernel/FreeRTOS.mk
 
 #define
 DEFINES	+= #-D_USER_DEBUG 
@@ -110,12 +100,11 @@ SRC_C += \
 
 #usr src
 SRC_C += \
-	SagittariusUI/main.c \
+	user_src/main.c \
 	SagittariusUI/Sagittarius_global.c \
 	SagittariusUI/Sagittarius_timer.c \
 	SagittariusUI/cJSON.c \
 	SagittariusUI/cJSON_extend.c \
-	SagittariusUI/licence.c \
 	SagittariusUI/TestBoard.c \
 	SagittariusUI/MTF_HMI.c \
 	SagittariusUI/file_type.c \
