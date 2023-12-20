@@ -1,0 +1,1 @@
+E:\\Aysi\emsdk\upstream\emscripten\tools\file_packager.bat fp.data --preload MTF --js-output=fp.js

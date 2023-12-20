@@ -15,6 +15,12 @@
 #define system_board_debug(...) //printf(__VA_ARGS__)
 
 //激活警告
+#ifdef __EMSCRIPTEN__
+void active_warning(void)
+{
+    
+}
+#else
 extern unsigned char _binary_ff_gif_start[], _binary_ff_gif_size[], _binary_ff_gif_end[];
 void active_warning(void)
 {
@@ -41,6 +47,7 @@ void active_warning(void)
         while (1); //防止盗版修改logo
     }
 }
+#endif
 
 //检测激活状态
 uint8_t check_active_state(void)

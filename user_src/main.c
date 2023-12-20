@@ -173,46 +173,26 @@ void app_init(void)
     personalise_function();
 }
 
-int main(int argc, char **argv) 
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+#endif
+void do_loop(void *arg)
 {
-    u8 start_command[] = {PLAY_MUSIC, 120, 0XFF, 0XAA};
-    char res = 0;
-    u8 keyDownLock = 0;
+    static uint8_t keyDownLock = 0;
 
-    hardware_init();
-    app_init();
-
-    delay_ms(35); //延时点亮背光, 避免显示没准备好而闪烁
-    LCD_BackLightSet(100); //点亮背光
-
-    cfg_load(); //载入ini文件,并初始化系统
-
-    if (HMI_parsed != NULL)
-    {
-        //HMI mode executes the run code at start
-        HMI_run_code(HMI_parsed,
-                     json_read_string(HMI_parsed, "run", "FFFFFF", &res));
-    }
-    else
-    {
-        //command mode executes this at start
-        PLAY_MUSIC_process(&start_command[0], NULL); //开机播放120号音乐
-        start_command[0] = SHOW_PIC;
-        start_command[1] = 0;
-        SHOW_PIC_process(&start_command[0], NULL); //开机显示0号图片
-    }
-
-    FilesRenew(); //文件更新
-
+#ifndef __EMSCRIPTEN__
     while (1)
+#endif
     {
         if (system_process_weak() == 1)
         {
             system_exit_weak();
+#ifndef __EMSCRIPTEN__            
             break;
+#endif            
         }
 
-        // _WAV_Play2(); //放于定时中断
+        // music_run(); //放于定时中断
         if(Sagittarius_timer_flag._6s)
         {
             Sagittarius_timer_flag._6s = 0;
@@ -266,6 +246,52 @@ int main(int argc, char **argv)
         }
         delay_ms(1);
     }
+}
+int main(int argc, char **argv) 
+{
+    u8 start_command[] = {PLAY_MUSIC, 120, 0XFF, 0XAA};
+    char res = 0;
+
+    printf("compile time: %s, %s, design by Aysi\r\n", __DATE__, __TIME__);
+    
+    hardware_init();
+    app_init();
+
+    delay_ms(35); //延时点亮背光, 避免显示没准备好而闪烁
+    LCD_BackLightSet(100); //点亮背光
+
+    cfg_load(); //载入ini文件,并初始化系统
+
+    if (HMI_parsed != NULL)
+    {
+        //HMI mode executes the run code at start
+        HMI_run_code(HMI_parsed,
+                     json_read_string(HMI_parsed, "run", "FFFFFF", &res));
+    }
+    else
+    {
+        //command mode executes this at start
+        PLAY_MUSIC_process(&start_command[0], NULL); //开机播放120号音乐
+        start_command[0] = SHOW_PIC;
+        start_command[1] = 0;
+        SHOW_PIC_process(&start_command[0], NULL); //开机显示0号图片
+    }
+
+    FilesRenew(); //文件更新
+    
+#ifdef __EMSCRIPTEN__
+    /**************************************
+    编写wasm的SDL程序和平时的不太一样，
+    我们需要在程序内部指定我们的游戏主循环，
+    这样Web端才能帮我们更新游戏,
+    如使用像平时那样使用while大循环，程序会卡死，
+    必须使用emscripten_set_main_loop_arg， 注册循环函数来循环
+    ****************************************/
+    emscripten_set_main_loop_arg(do_loop, NULL, -1, true);
+#else
+    do_loop(NULL);
+    system_exit_weak();
+#endif    
 
     return 0;
 }
@@ -375,6 +401,8 @@ void cfg_load(void)
             uart_hmi.Init.Mode = MTF_UART_MODE_TX_RX;          //收发模式
             MTF_UART_Init(&uart_hmi);                          //uart init
 #endif
+
+#ifndef __EMSCRIPTEN__
             if (strcmp(strings, "USB") == 0) //USB虚拟串口通信, 默认UART0端口通信
             {
                 USB_UART_INIT; //因软件架构原因, UART必须再此前开启
@@ -418,6 +446,7 @@ void cfg_load(void)
                 cfg_error_renew();
                 while (1);
             }
+#endif            
 
             //这里FLASH源结果肯定相同并前面已更新文件, 这用于当为SD源, 将SD和flash上的cfg对比
             if(strcmp(dirPath, "./MTF/")==0) //当前标记为SD源
@@ -1007,8 +1036,8 @@ void PLAY_MUSIC_process(u8 *data, int *num)
 {
     u8 i = 0;
     char music_path[PATH_LEN];
-    path_product(dirPath, &data[1], ".wav", music_path);
-    wav_init(music_path, data[2]);
+    path_product(dirPath, &data[1], "", music_path);
+    music_init(music_path, data[2]);
     i = 0.247*data[3];
     MTF_audio_vol(i);
 }
@@ -1570,7 +1599,9 @@ void EXTEND_COMMAND_process(u8 *data, int *num)
     case BACK_DIS: UI_LCDBackupDis(); break;
     case BACK_DIS_PART: BACK_DIS_PART_process(data, num); break;
     case PART_COLOR_REPLACE: PART_COLOR_REPLACE_process(data, num); break;
+#ifndef __EMSCRIPTEN__
     case TEST_SYS: testBoard(data, num); break;
+#endif  
     case KEY_STATE: KEY_STATE_process(data, num); break;
     case COORD_STATE: COORD_STATE_process(data, num); break; 
     case SET_COLOR: SET_COLOR_process(data, num); break;
