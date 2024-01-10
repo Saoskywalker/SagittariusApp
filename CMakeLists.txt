@@ -6,6 +6,7 @@ project (SagittariusApp)
 
 #设置C编译器特性
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2 -s USE_SDL=2 -s USE_SDL_MIXER=2 -s USE_SDL_IMAGE=2 -s USE_SDL_NET=2")
+# set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2")
 
 #宏定义, 类似gcc的-D
 add_definitions(-D_USER_DEBUG)
@@ -149,6 +150,7 @@ add_executable(index ${SRC_C})
 
 #设置可执行文件后缀
 set(CMAKE_EXECUTABLE_SUFFIX ".html")
+# set(CMAKE_EXECUTABLE_SUFFIX ".exe")
 
 #index文件需要使用到的库名称, PS:使用GCC规则, 缩写名, 如libSDL2.so, 则为SDL2
 # target_link_libraries(index
@@ -158,3 +160,4 @@ set(CMAKE_EXECUTABLE_SUFFIX ".html")
 #设置运行文件特性
 #按要求生成合适的HTML文件
 set_target_properties(index PROPERTIES LINK_FLAGS "--shell-file ${PROJECT_SOURCE_DIR}/arch/x64/emscripten/tools/emsdk_shell.html -s SINGLE_FILE=0 -s FORCE_FILESYSTEM=1")
+# set_target_properties(index PROPERTIES LINK_FLAGS "../ico/project_ico.res -mwindows")
