@@ -1,5 +1,47 @@
 <html>
 	<head>
+		<!-- PWA生成相关 open https://blog.csdn.net/github_38967228/article/details/126910002 -->
+		<!-- // 引入manifest.json -->
+		<link rel="manifest" href="/manifest.json" />
+		<script>
+			// serviceWorker
+			// 检查serviceWorker属性是否可用
+			if ("serviceWorker" in navigator) {
+				window.addEventListener("load", function () {
+					navigator.serviceWorker
+						.register("./serviceWorker.js")
+						.then(res => console.log("service worker registered"))
+						.catch(err => console.log("service worker not registered", err));
+				})
+			}
+		</script>
+		
+		<script>
+			var deferredPrompt = null;
+
+			//   判断用户是否安装此应用：beforeinstallprompt,如果用户已经安装过了,那么该事件不会再次触发
+			// 需要卸载，然后重新打开浏览器才能再次触发
+			window.addEventListener("beforeinstallprompt", e => {
+				e.preventDefault();
+				deferredPrompt = e;
+			});
+
+			// 安装完成后触发,即点击安装弹窗中的“安装”后被触发
+			window.addEventListener("appinstalled", () => {
+				deferredPrompt = null;
+			});
+
+
+			function addToDesktop() {
+				// 调用prompt()方法触发安装弹窗
+				deferredPrompt.prompt();
+				deferredPrompt = null;
+			}
+		</script>
+		
+		<button onclick="addToDesktop()">install app</button>
+		<!-- PWA生成相关 close-->
+
 		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'/>
 		<style type="text/css">
 			html, body {
@@ -38,7 +80,7 @@
 		<p id="output">
 			<canvas id="canvas"></canvas>
 		</p>
-        <script src="gitrev.js"></script>
+        <!-- <script src="gitrev.js"></script> -->
 		<script>
 			var siteURL = new URL(window.location.href);
 			var w = siteURL.searchParams.get("w") || "800";
