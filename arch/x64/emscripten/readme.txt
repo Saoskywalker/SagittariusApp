@@ -1,0 +1,1 @@
+because similar to mingw, so library in mingw directory

@@ -1,3 +1,16 @@
+/*
+Copyright (c) 2019-2023 Aysi 773917760@qq.com. All right reserved
+Official site: www.mtf123.club
+
+This software is provided 'as-is', without any express or implied
+warranty. In no event will the authors be held liable for any damages
+arising from the use of this software.
+
+It under the terms of the Apache as published;
+either version 2 of the License,
+or (at your option) any later version.
+*/
+
 #include "Sagittarius.h"
 #include "Sagittarius_global.h"
 #include "MTF_io.h"
@@ -159,12 +172,11 @@ void hardware_init(void)
     uart_hmi.Init.Mode = MTF_UART_MODE_TX_RX;          //收发模式
     MTF_UART_Init(&uart_hmi);                          //uart init, note: use to debug
 #endif
-Sagittarius_debug("BCB...\r\n");
+
     // beep_init(); //beep init
     LCD_Init(); //lcd driver init
     MTF_timer_init_handle(); //timer init
     MTF_watch_dog_init(); //start WDOG
-    Sagittarius_debug("BCB...\r\n");
 }
 
 void app_init(void)
@@ -252,8 +264,11 @@ int main(int argc, char **argv)
     u8 start_command[] = {PLAY_MUSIC, 120, 0XFF, 0XAA};
     char res = 0;
 
-    printf("compile time: %s, %s, design by Aysi\r\n", __DATE__, __TIME__);
-    
+    // printf("compile time: %s, %s, design by Aysi\r\n", __DATE__, __TIME__);
+    printf("Copyright (c) 2019-2023 Aysi 773917760@qq.com. All right reserved\r\n");
+    printf("Official site: www.mtf123.club SagittariusApp\r\n");
+    printf("version v1.2.3 released\r\n");
+
     hardware_init();
     app_init();
 
